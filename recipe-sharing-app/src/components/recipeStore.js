@@ -33,6 +33,47 @@ const useRecipeStore = create((set) => ({
     set((state) => ({
       recipes: state.recipes.filter((r) => r.id !== id),
     })),
+    // =====================
+  // Favorites
+  // =====================
+  addFavorite: (recipeId) => {
+    set((state) => {
+      if (state.favorites.includes(recipeId)) return state; // avoid duplicates
+      const favorites = [...state.favorites, recipeId];
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      return { favorites };
+    });
+  },
+
+  removeFavorite: (recipeId) => {
+    set((state) => {
+      const favorites = state.favorites.filter((id) => id !== recipeId);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      return { favorites };
+    });
+  },
+
+  // =====================
+  // Recommendations (basic version)
+  // =====================
+  generateRecommendations: () => {
+    set((state) => {
+      const recommended = state.recipes.filter(
+        (recipe) =>
+          !state.favorites.includes(recipe.id) && // exclude favorites
+          Math.random() > 0.5 // mock randomness for now
+      );
+      return { recommendations: recommended };
+    });
+  },
+
+  // =====================
+  // Helpers
+  // =====================
+  getRecipeById: (id) => {
+    const recipes = get().recipes;
+    return recipes.find((r) => String(r.id) === String(id));
+  },
 }));
 
 export default useRecipeStore;
