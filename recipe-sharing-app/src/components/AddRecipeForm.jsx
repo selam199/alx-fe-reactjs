@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useRecipeStore from '../store/recipeStore';
 
 const AddRecipeForm = () => {
-  const addRecipe = useRecipeStore((state) => state.addRecipe);
+  const addRecipe = useRecipeStore((s) => s.addRecipe);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -29,10 +29,7 @@ const AddRecipeForm = () => {
         placeholder="Description"
         className="border p-2 rounded w-full mb-2"
       />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white py-2 px-4 rounded"
-      >
+      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
         Add Recipe
       </button>
     </form>

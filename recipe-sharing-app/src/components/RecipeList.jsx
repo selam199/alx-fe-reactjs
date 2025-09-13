@@ -1,16 +1,20 @@
-// src/components/RecipeList.jsx
 import { Link } from 'react-router-dom';
 import useRecipeStore from '../store/recipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes());
+  const recipes = useRecipeStore((s) => s.recipes);
 
-  if (recipes.length === 0) return <p>No recipes match your search.</p>;
+  if (!recipes.length) return <p>No recipes yet.</p>;
 
   return (
     <div>
       {recipes.map((recipe) => (
-        <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
+        <Link
+          key={recipe.id}
+          to={`/recipe/${recipe.id}`}
+          state={{ recipe }} // pass recipe to details (avoids lookup lag)
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
           <div className="border p-4 rounded mb-2 hover:bg-gray-100 cursor-pointer">
             <h3 className="font-bold text-lg">{recipe.title}</h3>
           </div>
@@ -21,4 +25,3 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
-
