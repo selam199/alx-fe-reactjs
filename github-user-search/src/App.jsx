@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { searchUsers } from "./services/githubService";
+import { fetchUserData } from "./services/githubService";
 import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
 
@@ -8,7 +8,7 @@ function App() {
 
   const handleSearch = async (username) => {
     try {
-      const data = await searchUsers(username);
+      const data = await fetchUserData(username);
       setUser(data);
     } catch {
       setUser(null);
@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="app">
       <h1>GitHub User Search</h1>
-      <SearchBar onSearch={handleSearch} />
-      {user && <UserCard user={user} />}
+      <SearchBar />
+     
     </div>
   );
 }
