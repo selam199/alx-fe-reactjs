@@ -16,7 +16,7 @@ export const fetchUserData = async (username) => {
   }
 };
 
-// Advanced search with username, location, minRepos, and pagination
+// Advanced search for users with query, location, minRepos, pagination
 export const searchUsers = async ({ query, location = "", minRepos = 0, page = 1 }) => {
   if (!query) throw new Error("Search query is required");
 
@@ -26,7 +26,7 @@ export const searchUsers = async ({ query, location = "", minRepos = 0, page = 1
 
   try {
     const response = await axios.get(
-      `${BASE_URL}/search/users?q=${searchQuery}&page=${page}&per_page=20`,
+      `${BASE_URL}https://api.github.com/search/users?q=${searchQuery}&page=${page}&per_page=20`,
       {
         headers: { Authorization: `token ${TOKEN}` },
       }
@@ -37,4 +37,3 @@ export const searchUsers = async ({ query, location = "", minRepos = 0, page = 1
     throw new Error("Search failed");
   }
 };
-
