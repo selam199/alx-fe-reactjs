@@ -19,7 +19,7 @@ function SearchBar() {
       const data = await fetchUserData({ username, location, minRepos });
       setUsers(data.items);
     } catch (err) {
-      setError("No users found matching the criteria");
+      setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
     }
