@@ -2,7 +2,10 @@ import axios from "axios";
 
 const BASE_URL = "https://api.github.com";
 
-export const fetchUserData = async (username) => {
+export const fetchUserData = async (username, location, minRepos ) => {
+    let query = username || "";
+    if (location) query += `+location:${location}`;
+    if (minRepos) query += `+repos:>=${minRepos}`;
   try {
     const response = await axios.get(`${BASE_URL}/users/${username}`, {
       headers: {

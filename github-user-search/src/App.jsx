@@ -16,8 +16,8 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>GitHub User Search</h1>
+    <div className="min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold text-center py-6">GitHub User Search</h1>
       <SearchBar />
      
     </div>
