@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fetchUserData } from "./services/githubService";
-import SearchBar from "./components/SearchBar";
-import UserCard from "./components/UserCard";
+import SearchBar from "./components/Search";
+
 
 function App() {
   const [user, setUser] = useState(null);
