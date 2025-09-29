@@ -1,10 +1,20 @@
 [
+[
   {
     "id": 1,
     "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
-  },
+    "summary": "A classic Italian pasta dish...",
+    "image": "https://via.placeholder.com/300",
+    "ingredients": ["200g spaghetti", "100g bacon", "2 eggs", "50g parmesan cheese", "Black pepper"],
+    "instructions": [
+      "Boil spaghetti in salted water until al dente.",
+      "Fry the bacon until crispy.",
+      "Mix eggs and parmesan in a bowl.",
+      "Combine spaghetti with bacon and remove from heat.",
+      "Quickly stir in egg mixture and season with black pepper."
+    ]
+  }
+],
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
