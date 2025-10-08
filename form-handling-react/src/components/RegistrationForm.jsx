@@ -7,7 +7,7 @@ const RegistrationForm = () => {
     password: "",
   });
 
-  const [error, setError] = useState("");
+  const [error, setErrors] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
@@ -21,21 +21,21 @@ const RegistrationForm = () => {
 
    // ✅ Direct validation checks
     if (!username) {
-      setError({ username: "Username is required" });
+      setErrors({ username: "Username is required" });
       return;
     }
 
     if (!email) {
-      setError({ email: "Email is required" });
+      setErrors({ email: "Email is required" });
       return;
     }
 
     if (!password) {
-      setError({ password: "Password is required" });
+      setErrors({ password: "Password is required" });
       return;
     }
 
-    setError("");
+    setErrors("");
     console.log("Form Submitted:", formData);
     alert("Registration Successful!");
 
