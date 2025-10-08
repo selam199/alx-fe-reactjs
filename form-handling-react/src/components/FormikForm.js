@@ -2,26 +2,24 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-// Validation Schema
+// ✅ Validation Schema using Yup
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().min(6, "Minimum 6 characters").required("Password is required"),
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 const FormikForm = () => {
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-center">
-        Registration Form (Formik)
-      </h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center">Formik Registration Form</h2>
 
       <Formik
         initialValues={{ username: "", email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          console.log("Form Submitted:", values);
-          alert("Registration Successful!");
+          alert("Form submitted successfully!");
+          console.log("Submitted with Formik:", values);
           resetForm();
         }}
       >
@@ -32,11 +30,11 @@ const FormikForm = () => {
                 type="text"
                 name="username"
                 placeholder="Username"
-                className="w-full p-2 border rounded"
+                className="w-full border p-2 rounded"
               />
               <ErrorMessage
                 name="username"
-                component="div"
+                component="p"
                 className="text-red-500 text-sm"
               />
             </div>
@@ -46,11 +44,11 @@ const FormikForm = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                className="w-full p-2 border rounded"
+                className="w-full border p-2 rounded"
               />
               <ErrorMessage
                 name="email"
-                component="div"
+                component="p"
                 className="text-red-500 text-sm"
               />
             </div>
@@ -60,18 +58,18 @@ const FormikForm = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full p-2 border rounded"
+                className="w-full border p-2 rounded"
               />
               <ErrorMessage
                 name="password"
-                component="div"
+                component="p"
                 className="text-red-500 text-sm"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+              className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
             >
               Register
             </button>
