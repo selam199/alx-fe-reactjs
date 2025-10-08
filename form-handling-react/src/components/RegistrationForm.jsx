@@ -9,11 +9,13 @@ const RegistrationForm = () => {
 
   const [error, setError] = useState("");
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,8 +28,13 @@ const RegistrationForm = () => {
     setError("");
     console.log("Form Submitted:", formData);
     alert("Registration Successful!");
-    // Reset form
-    setFormData({ username: "", email: "", password: "" });
+
+    // Reset form fields
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -39,6 +46,7 @@ const RegistrationForm = () => {
       {error && <p className="text-red-500 text-center mb-3">{error}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Username Field */}
         <input
           type="text"
           name="username"
@@ -48,6 +56,7 @@ const RegistrationForm = () => {
           className="w-full p-2 border rounded"
         />
 
+        {/* Email Field */}
         <input
           type="email"
           name="email"
@@ -57,6 +66,7 @@ const RegistrationForm = () => {
           className="w-full p-2 border rounded"
         />
 
+        {/* Password Field */}
         <input
           type="password"
           name="password"
