@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TodoList from "../components/TodoList.jsx";
+import TodoList from "../components/TodoList";
 
 describe("TodoList Component", () => {
   test("renders initial todos", () => {
@@ -9,31 +10,34 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Build Todo App")).toBeInTheDocument();
   });
 
-  test("adds a new todo", () => {
+  test("adds a new todo", async () => {
     render(<TodoList />);
     const input = screen.getByPlaceholderText("Add a new todo");
     const button = screen.getByText("Add");
 
-    userEvent.type(input, "Test new todo");
-    fireEvent.click(button);
+    await userEvent.type(input, "Test new todo");
+    await userEvent.click(button);
 
-    expect(screen.getByText("Test new todo")).toBeInTheDocument();
+    const newTodo = await screen.findByText("Test new todo");
+    expect(newTodo).toBeInTheDocument();
   });
 
-  test("toggles a todo", () => {
+  test("toggles a todo", async () => {
     render(<TodoList />);
     const todo = screen.getByText("Learn React");
-    fireEvent.click(todo);
+
+    await userEvent.click(todo);
 
     expect(todo).toHaveStyle("text-decoration: line-through");
   });
 
-  test("deletes a todo", () => {
+  test("deletes a todo", async () => {
     render(<TodoList />);
     const todo = screen.getByText("Build Todo App");
     const deleteButton = todo.nextSibling;
 
-    fireEvent.click(deleteButton);
+    await userEvent.click(deleteButton);
+
     expect(todo).not.toBeInTheDocument();
   });
 });

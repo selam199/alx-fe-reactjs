@@ -57,10 +57,16 @@ const TodoList = () => {
 
       <ul className="space-y-2">
         {todos.map((todo) => (
-          <li key={todo.id} className="flex justify-between items-center border px-2 py-1 rounded">
+          <li
+            key={todo.id}
+            className="flex justify-between items-center border px-2 py-1 rounded"
+          >
             <span
               onClick={() => toggleTodo(todo.id)}
-              style={{ textDecoration: todo.completed ? "line-through" : "none", cursor: "pointer" }}
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none",
+                cursor: "pointer",
+              }}
             >
               {todo.text}
             </span>
